@@ -1,0 +1,10 @@
+^C:\USERS\LUIZC\ONEDRIVE\ÁREA DE TRABALHO\P\SDL\SDL\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/luizc/OneDrive/Área de Trabalho/p/sdl/sdl" "-BC:/Users/luizc/OneDrive/Área de Trabalho/p/build" --check-stamp-file "C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

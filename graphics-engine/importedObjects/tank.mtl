@@ -1,0 +1,22 @@
+# Blender 4.3.2 MTL File: 'None'
+# www.blender.org
+
+newmtl Material_1.003
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:/Users/luizc/Downloads/wkvr3719r0g0-M4/M4_Sherman.dds
+
+newmtl Material_1.005
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:/Users/luizc/Downloads/wkvr3719r0g0-M4/E:/Tanks/USA/tracks/Grant_track.dds

@@ -1,0 +1,113 @@
+Determining if the __GLIBC__ exist failed with the following output:
+Change Dir: C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1d2bf.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+  Microsoft (R) C/C++ Optimizing Compiler Versão 19.34.31937 para x64
+  CheckSymbolExists.c
+  Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1d2bf.dir\Debug\\" /Fd"cmTC_1d2bf.dir\Debug\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\CheckSymbolExists.c"
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\CheckSymbolExists.c(8,28): error C2065: '__GLIBC__': identificador não declarado [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_1d2bf.vcxproj]
+
+
+File C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef __GLIBC__
+  return ((int*)(&__GLIBC__))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test CHECK_CPU_ARCHITECTURE_X86 failed with the following output:
+Change Dir: C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_e2410.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+  Microsoft (R) C/C++ Optimizing Compiler Versão 19.34.31937 para x64
+  src.c
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2065: 'choke': identificador não declarado [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_e2410.vcxproj]
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2143: erro de sintaxe: ';' ausente antes de '}' [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_e2410.vcxproj]
+  Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_CPU_ARCHITECTURE_X86 /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_e2410.dir\Debug\\" /Fd"cmTC_e2410.dir\Debug\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c"
+
+
+Source file was:
+
+int main(int argc, char *argv[]) {
+#if defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) ||defined( __i386) || defined(_M_IX86)
+  return 0;
+#else
+  choke
+#endif
+}
+
+Performing C SOURCE FILE Test CHECK_CPU_ARCHITECTURE_ARM32 failed with the following output:
+Change Dir: C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_f7d1a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+  Microsoft (R) C/C++ Optimizing Compiler Versão 19.34.31937 para x64
+  Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+  src.c
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2065: 'choke': identificador não declarado [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_f7d1a.vcxproj]
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2143: erro de sintaxe: ';' ausente antes de '}' [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_f7d1a.vcxproj]
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_CPU_ARCHITECTURE_ARM32 /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_f7d1a.dir\Debug\\" /Fd"cmTC_f7d1a.dir\Debug\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c"
+
+
+Source file was:
+
+int main(int argc, char *argv[]) {
+#if defined(__arm__) || defined(_M_ARM)
+  return 0;
+#else
+  choke
+#endif
+}
+
+Performing C SOURCE FILE Test CHECK_CPU_ARCHITECTURE_ARM64 failed with the following output:
+Change Dir: C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_e2ef3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+  Microsoft (R) C/C++ Optimizing Compiler Versão 19.34.31937 para x64
+  src.c
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2065: 'choke': identificador não declarado [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_e2ef3.vcxproj]
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2143: erro de sintaxe: ';' ausente antes de '}' [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_e2ef3.vcxproj]
+  Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_CPU_ARCHITECTURE_ARM64 /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_e2ef3.dir\Debug\\" /Fd"cmTC_e2ef3.dir\Debug\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c"
+
+
+Source file was:
+
+int main(int argc, char *argv[]) {
+#if defined(__aarch64__) || defined(_M_ARM64)
+  return 0;
+#else
+  choke
+#endif
+}
+
+Performing C SOURCE FILE Test CHECK_CPU_ARCHITECTURE_LOONGARCH64 failed with the following output:
+Change Dir: C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_c4d02.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+  Microsoft (R) C/C++ Optimizing Compiler Versão 19.34.31937 para x64
+  src.c
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2065: 'choke': identificador não declarado [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_c4d02.vcxproj]
+C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c(8,1): error C2143: erro de sintaxe: ';' ausente antes de '}' [C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\cmTC_c4d02.vcxproj]
+  Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_CPU_ARCHITECTURE_LOONGARCH64 /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c4d02.dir\Debug\\" /Fd"cmTC_c4d02.dir\Debug\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Users\luizc\OneDrive\Área de Trabalho\p\build\CMakeFiles\CMakeTmp\src.c"
+
+
+Source file was:
+
+int main(int argc, char *argv[]) {
+#if defined(__loongarch64)
+  return 0;
+#else
+  choke
+#endif
+}
+

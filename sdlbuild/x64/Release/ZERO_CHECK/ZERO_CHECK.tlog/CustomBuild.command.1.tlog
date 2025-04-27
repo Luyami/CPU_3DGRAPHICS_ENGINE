@@ -1,0 +1,10 @@
+^C:\USERS\LUIZC\ONEDRIVE\ÁREA DE TRABALHO\P\BUILD\CMAKEFILES\051E3864B5B6BC53A1CC275D35A42449\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/luizc/OneDrive/Área de Trabalho/p/sdl/sdl" "-BC:/Users/luizc/OneDrive/Área de Trabalho/p/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/luizc/OneDrive/Área de Trabalho/p/build/SDL2.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

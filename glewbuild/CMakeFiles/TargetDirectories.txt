@@ -1,0 +1,8 @@
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/glew.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/glew_s.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/glewinfo.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/visualinfo.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/uninstall.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/INSTALL.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/CMakeFiles/ZERO_CHECK.dir

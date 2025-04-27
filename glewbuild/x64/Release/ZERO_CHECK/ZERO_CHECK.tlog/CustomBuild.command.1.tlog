@@ -1,0 +1,10 @@
+^C:\USERS\LUIZC\ONEDRIVE\ÁREA DE TRABALHO\P\GLEWBUILD\CMAKEFILES\8BED4C033F34B35E16A38ED3DCB4DC5F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/luizc/OneDrive/Área de Trabalho/p/glew/glew/build/cmake" "-BC:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/luizc/OneDrive/Área de Trabalho/p/glewbuild/glew.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

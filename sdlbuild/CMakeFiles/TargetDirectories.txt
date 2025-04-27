@@ -1,0 +1,9 @@
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/sdl_headers_copy.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/SDL2main.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/SDL2.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/SDL2-static.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/SDL2_test.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/uninstall.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/INSTALL.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/luizc/OneDrive/Área de Trabalho/p/build/CMakeFiles/ZERO_CHECK.dir
