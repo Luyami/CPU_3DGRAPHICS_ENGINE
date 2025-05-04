@@ -13,7 +13,9 @@ double Engine::DELTA_TIME = 1.0f;
 double Engine::velFRONT = 0.0f;
 double Engine::velRIGHT = 0.0f;
 double Engine::velUP = 0.0f;
-double Engine::speed = 3.0f;
+double Engine::speed = 8.0f;
+
+int Engine::RT_RAYS = 0;
 
 bool Engine::IS_WIREFRAME_ENABLED = true;
 bool Engine::IS_OPTIMIZATION_ENABLED = true;
@@ -197,6 +199,10 @@ void Engine::__interface_step(){
         if (IS_BILINEAR_ENABLED) Scene::changeTextureFiltering(TextureFiltering::Bilinear);
         else Scene::changeTextureFiltering(TextureFiltering::Nearest);
     }
+
+    ImGui::Text("RT");
+    ImGui::SameLine();
+    ImGui::SliderInt("##1", &scene->rt_rays, 0, 5);
 
     ImGui::End();
     //

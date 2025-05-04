@@ -48,75 +48,119 @@ int main(int argc, char* argv[]) {
 
     Mesh* house = Mesh::FromObj("importedObjects/house.obj");
     house->setName("house");
-    scene.addObject(house);
+    //scene.addObject(house);
 
     Mesh* car = Mesh::FromObj("importedObjects/car1.obj");
     car->setName("car");
     car->setPosition(Vector3(2.361f, 0.446f, 1.5f));
-    scene.addObject(car);
+    //scene.addObject(car);
 
     Mesh* grassfloor = Mesh::FromObj("importedObjects/grassfloor.obj");
     grassfloor->setName("grassfloor");
     grassfloor->setPosition(Vector3(0.0f, -3.7f, 0.0f));
-    scene.addObject(grassfloor);
+    //scene.addObject(grassfloor);
 
     Mesh* cube = Mesh::FromObj("importedObjects/cube.obj");
     cube->move(Vector3(30.0f, 20.0f, 0.0f));
     cube->scale(Vector3(5.0f, 5.0f, 5.0f));
-    scene.addObject(cube);
+    cube->setReflectivity(1.0f);
+    //scene.addObject(cube);
 
     //Snowman
     Sphere* snow_head = new Sphere(Vector3(0,0,0), 0.6f, Vector3(1,1,1), Vector3(1,1,1), Vector3(1,1,1));
     snow_head->setName("snow_head");
     snow_head->move(Vector3(15.0f, 3.0f, 0.0f));
-    scene.addObject(snow_head);
+    //scene.addObject(snow_head);
 
     Sphere* snow_eye1 = new Sphere(Vector3(0,0,0), 0.075f, Vector3(0,0,0), Vector3(0,0,0), Vector3(0,0,0));
     snow_eye1->setName("snow_eye1");
     snow_eye1->move(Vector3(15.2f, 3.0f, 0.53f));
-    scene.addObject(snow_eye1);
+    //scene.addObject(snow_eye1);
 
     Sphere* snow_eye2 = new Sphere(Vector3(0,0,0), 0.075f, Vector3(0,0,0), Vector3(0,0,0), Vector3(0,0,0));
     snow_eye2->setName("snow_eye2");
     snow_eye2->move(Vector3(14.8f, 3.0f, 0.53f));
-    scene.addObject(snow_eye2);
+    //scene.addObject(snow_eye2);
 
     Sphere* snowbody_mid = new Sphere(Vector3(0,0,0), 0.8f, Vector3(1,1,1), Vector3(1,1,1), Vector3(1,1,1));
     snowbody_mid->setName("snowbody_mid");
     snowbody_mid->move(Vector3(15.0f, 2.0f, 0.0f));
-    scene.addObject(snowbody_mid);
+    //scene.addObject(snowbody_mid);
     
     Sphere* snowbody_low = new Sphere(Vector3(0,0,0), 1.0f, Vector3(1,1,1), Vector3(1,1,1), Vector3(1,1,1));
     snowbody_low->setName("snowbody_low");
     snowbody_low->move(Vector3(15.0f, 1.0f, 0.0f));
-    scene.addObject(snowbody_low);
+    //scene.addObject(snowbody_low);
 
     Cone* snow_hat = new Cone(Vector3(0,0,0), Vector3(0,1,0), 0.65f, 1.0f, RGB(0.73f,0.55,0.39), RGB(0.73f,0.55,0.39), RGB(0.73f,0.55,0.39));
     snow_hat->setName("snow_hat");
     snow_hat->move(Vector3(15.0f, 3.25f, 0.0f));
-    scene.addObject(snow_hat);
+    //scene.addObject(snow_hat);
 
     Cylinder* snow_armRight = new Cylinder(Vector3(0,0,0), Vector3(1,1,0), 0.2f, 1.5f, RGB(1,1,1), RGB(1,1,1), RGB(1,1,1));
     snow_armRight->setName("snow_armRight");
     snow_armRight->move(Vector3(13.5f, 1.35f, 0.0f));
-    scene.addObject(snow_armRight);
+    //scene.addObject(snow_armRight);
 
     Cylinder* snow_armLeft = new Cylinder(Vector3(0,0,0), Vector3(-1,1,0), 0.2f, 1.5f, RGB(1,1,1), RGB(1,1,1), RGB(1,1,1));
     snow_armLeft->setName("snow_armLeft");
     snow_armLeft->move(Vector3(16.5f, 1.35f, 0.0f));
-    scene.addObject(snow_armLeft);
+    //scene.addObject(snow_armLeft);
+
+    Mesh* m = Mesh::FromObj("importedObjects/plane.obj");
+    m->setPosition(Vector3(0.0f, 20.0f, 0.0f));
+    m->rotateX(90.0f);
+    m->rotateZ(60.0f);
+    m->setReflectivity(0.9f);
+    //scene.addObject(m);
+
+    Sphere* s1 = new Sphere(Vector3(2.0f,-3.5f,0.0f), 3.5f, Vector3(0,1,1), Vector3(0,1,1), Vector3(0,1,1));
+    s1->setReflectivity(0.1f);
+    scene.addObject(s1);
+
+    Mesh* lamp = Mesh::FromObj("importedObjects/lamp.obj");
+    lamp->setPosition(Vector3(2.0f, 4.7f, 0.0f));
+    lamp->scale(Vector3(1.5, 1.5, 1.5));
+    //scene.addObject(lamp);
+    Light* la1 = Light::pointLight(Vector3(12.0f, 4.5f, 0.2f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
+    //la1->turnOff();
+    scene.addLight(la1);
+    Light* la2 = Light::pointLight(Vector3(12.0f, 4.5f, 0.0f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
+    //la2->turnOff();
+    scene.addLight(la2);
+    Light* la3 = Light::pointLight(Vector3(12.0f, 4.5f, -0.2f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
+    //la3->turnOff();
+    scene.addLight(la3);
+    Light* la4 = Light::pointLight(Vector3(2.0f, 4.5f, 0.2f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
+    la4->turnOff();
+    scene.addLight(la4);
+    Light* la5 = Light::pointLight(Vector3(2.0f, 4.5f, -0.2f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
+    la5->turnOff();
+    scene.addLight(la5);
+
+    Sphere* s2 = new Sphere(Vector3(10.0f,10.0f,40.0f), 5.0f, Vector3(0,1,0), Vector3(0,1,0), Vector3(0,1,0));
+    s2->setReflectivity(0.4f);
+    //scene.addObject(s2);
+
+    Sphere* s3 = new Sphere(Vector3(-10.0f,10.0f,40.0f), 5.0f, Vector3(0,0,1), Vector3(0,0,1), Vector3(0,0,1));
+    s3->setReflectivity(1.0f);
+    //scene.addObject(s3);
     //
 
-    Light* l1 = Light::directionalLight(Vector3(0.0f, -0.2f, -1.0f), RGB(1.0f, 1.0f, 1.0f));
-    Light* l2 = Light::spotLight(Vector3(15.0f, 10.0f, 0.0f), Vector3(0.0f, -1.0f, 0.0f), 15.0f, 0.0f, RGB(9/255.0f,255/255.0f,74/255.0f));
+    Light* l1 = Light::directionalLight(Vector3(-15.0f, 0.0f, 0.0f), RGB(1.0f, 1.0f, 1.0f));
+    l1->turnOff();
+    Light* l2 = Light::spotLight(Vector3(2.0f, 8.0f, 0.0f), Vector3(0.0f, -1.0f, 0.0f), 15.0f, 0.0f, RGB(9/255.0f,255/255.0f,74/255.0f));
     l2->turnOff();
 
     Light* l3 = Light::pointLight(Vector3(15.0f, 2.5f, 2.0f), RGB(1.0f, 1.0f, 1.0f), 1.0f);
     l3->turnOff();
     
+    Mesh* kitchenSet = Mesh::FromObj("importedObjects/abe.obj");
+    scene.addObject(kitchenSet);
+
     scene.addLight(l1);
     scene.addLight(l2);
-    scene.addLight(l3);
+    //scene.addLight(l3);
     //scene.addObject(m);
     //
 

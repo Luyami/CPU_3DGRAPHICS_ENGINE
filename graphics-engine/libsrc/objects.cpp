@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <random>
 #include <omp.h>
 
 #include <chrono>
@@ -73,6 +74,46 @@ void freeBVHNode(BVHNode* node) {
     delete node;
 }
 
+// Random float in [0, 1)
+float randf() {
+    static std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+    static std::mt19937 gen;
+    return dist(gen);
+}
+
+// Builds an orthonormal basis (tangent, bitangent, normal)
+void buildOrthonormalBasis(Vector3& n, Vector3& t, Vector3& b) {
+    t = (std::abs(n.getZ()) < 0.999f) ? Vector3(0, 0, 1).cartesianCross(n).normalize() : Vector3(1, 0, 0).cartesianCross(n).normalize();
+    b = n.cartesianCross(t);
+}
+
+// Cosine-weighted hemisphere sampling (in world space)
+Vector3 sampleHemisphere(Vector3& normal) {
+    float r1 = randf();
+    float r2 = randf();
+
+    float phi = 2.0f * M_PI * r1;
+    float cosTheta = std::sqrt(1.0f - r2);
+    float sinTheta = std::sqrt(r2);
+
+    // Local coordinates
+    float x = std::cos(phi) * sinTheta;
+    float y = std::sin(phi) * sinTheta;
+    float z = cosTheta;
+
+    // Build local basis
+    Vector3 tangent, bitangent;
+    buildOrthonormalBasis(normal, tangent, bitangent);
+
+    // Transform to world space
+    Vector3 direction =
+        tangent * x +
+        bitangent * y +
+        normal * z;
+
+    return direction.normalize();
+}
+
 //Classe Object
 Object::Object() {}
 
@@ -86,6 +127,7 @@ Object::Object(string name, Vector3 position, RGB ambientColor, RGB diffuseColor
     this->diffuseColor = diffuseColor;
     this->specularColor = specularColor;
     this->specularExponent = 17.0f;
+    this->reflectivity = 0.0f;
 }
 
 void Object::move(Vector3 dir){
@@ -110,6 +152,13 @@ RGB Object::getSpecularColor() {
 
 float Object::getSpecularExponent(){
     return specularExponent;
+}
+
+float Object::getReflectivity(){
+    return reflectivity;
+}
+void Object::setReflectivity(float reflectivity){
+    this->reflectivity = reflectivity;
 }
 
 Vector3 Object::getPosition() {return this->position;}
@@ -495,8 +544,46 @@ void Scene::drawScene(){
                 if (Scene::mode == RenderizationMode::Wireframe){
                     colorBuffer[r][c] = RGB(0.0f, 1.0f, 0.0f);
                 }
-                else colorBuffer[r][c] = this->computeShading(hitResult, RGB(0.25f, 0.25f, 0.25f)); // Sombreamento
-                
+                else
+                {
+                    int secondaryRaysCount = 0;
+                    float accumulatedDecay = 1.0f;
+
+                    Object* obj = hitResult.object;
+                    float reflectivity = (obj->type == ObjType::TTriangle) ? ((Triangle*)obj)->getMesh()->getReflectivity() : obj->getReflectivity(); 
+                    Vector3 color = Vector3(this->computeShading(hitResult, RGB(0.0f, 0.0f, 0.0f))) * (1.0f - reflectivity);
+                    
+                    int samples = 8;
+                    for (int i = 0; i < samples; ++i){
+                        Vector3 d = sampleHemisphere(hitResult.normal);
+                        RaycastHit newHitResult = this->Raycast(Ray(hitResult.hitPoint, d));
+
+                        if (newHitResult.hit) color = color + (Vector3) this->computeShading(newHitResult, RGB(0.0f, 0.0f, 0.0f))/samples;
+                    }
+                    
+                    while (secondaryRaysCount < Scene::rt_rays && 1 == 2){
+                        obj = hitResult.object;
+                        reflectivity = (obj->type == ObjType::TTriangle) ? ((Triangle*)obj)->getMesh()->getReflectivity() : obj->getReflectivity(); 
+
+                        if (reflectivity <= 0.001f) break; //Objeto incidido não reflete!
+
+                        Vector3 reflectedRay = rayDir.reflect(hitResult.normal);
+                        RaycastHit reflectedHit = this->Raycast(Ray(hitResult.hitPoint, reflectedRay));
+
+                        if (reflectedHit.hit){
+                            color = color + Vector3(this->computeShading(reflectedHit, RGB(0.25f, 0.25f, 0.25f))) * reflectivity;   //Cor da reflexão
+                        }
+                        else{
+                            color = color + Vector3(135.0f/255.0f, 206.0f/255.0f, 235.0f/255.0f) * reflectivity;
+                            break; //Nenhum novo objeto foi acertado
+                        }
+
+                        hitResult = reflectedHit; //Atualiza hitResult para o último hit que acertou algo
+                        ++secondaryRaysCount;
+                    }
+
+                    colorBuffer[r][c] = color;
+                }
             }
         }
     }
@@ -536,6 +623,8 @@ void Scene::drawScene(){
 void Scene::renderScene(){
     drawScene();
 }
+
+int Scene::rt_rays = 0;
 
 int Scene::optimizationLevel = 5;
 bool Scene::optimizedRenderization = false;
@@ -1810,19 +1899,18 @@ RGB Light::evaluateShading(Scene& scene, RaycastHit hit){
     Vector3 incidentRay = (hit.hitPoint - this->position).normalize();
     Vector3 reflectedRay = (normal * (normal.cartesianDot(-incidentRay)) * 2 + incidentRay).normalize();
 
-    RGB diffuseEnergy;
-    RGB specularEnergy;
+    RGB diffuseEnergy = (Vector3) difColor * this->colorRGB * normal.cartesianDot(-incidentRay);
+    RGB specularEnergy = (Vector3) specColor * this->colorRGB * pow(reflectedRay.cartesianDot(-dir), (int)hit.object->getSpecularExponent());
 
     if (this->type == LightType::Point){
         float dist = (this->position - hit.hitPoint).magnitude();
         float attenuation = potency/(1.0f + 0.09f*dist + 0.032f*dist*dist); //atenuação da luz pontual proporcional à distância
 
-        diffuseEnergy = (Vector3) difColor * this->colorRGB * normal.cartesianDot(-incidentRay) * attenuation;
-        specularEnergy = (Vector3) specColor * this->colorRGB * pow(reflectedRay.cartesianDot(-dir), (int)hit.object->getSpecularExponent()) * attenuation;
+        diffuseEnergy = (Vector3) diffuseEnergy * attenuation;
+        specularEnergy = (Vector3) specularEnergy * attenuation;
     }
     else if (this->type == LightType::Directional){
-        diffuseEnergy = (Vector3) difColor * this->colorRGB * normal.cartesianDot(-incidentRay);
-        specularEnergy = (Vector3) specColor * this->colorRGB * pow(reflectedRay.cartesianDot(-dir), (int)hit.object->getSpecularExponent());
+        ;
     }
     else if (this->type == LightType::Spot){
         float openingAngleCos = this->direction.cartesianDot(incidentRay);
@@ -1833,8 +1921,8 @@ RGB Light::evaluateShading(Scene& scene, RaycastHit hit){
         else{
             float intensity = pow(openingAngleCos, (int)this->focus);
 
-            diffuseEnergy = (Vector3) difColor * this->colorRGB * normal.cartesianDot(-incidentRay) * intensity;
-            specularEnergy = (Vector3) specColor * this->colorRGB * pow(reflectedRay.cartesianDot(-dir), (int)hit.object->getSpecularExponent()) * intensity;
+            diffuseEnergy = (Vector3) diffuseEnergy * intensity;
+            specularEnergy = (Vector3) specularEnergy * intensity;
         }
     }
 

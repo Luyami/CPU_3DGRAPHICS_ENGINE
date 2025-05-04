@@ -23,6 +23,8 @@ class Engine{
         static double velUP;
         static double speed;
 
+        static int RT_RAYS;
+
         static bool IS_WIREFRAME_ENABLED;
         static bool IS_OPTIMIZATION_ENABLED;
         static bool PREDICT_PIXEL;

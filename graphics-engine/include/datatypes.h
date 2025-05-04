@@ -33,6 +33,7 @@ class Vector3{
         float magnitude();
 
         Vector3 normalize();
+        Vector3 reflect(Vector3 normal);
 
         friend std::ostream& operator<<(std::ostream& str, Vector3 const& o);
         friend Vector3 operator+(const Vector3& o1, const Vector3& o2);

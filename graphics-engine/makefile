@@ -8,3 +8,6 @@ all:
 	g++ -c libsrc/engine.cpp -o compiledlibs/engine.o -I"../sdl/sdl/include"
 	ar rcs compiledlibs/libmainGE.a compiledlibs/obj_importer.o compiledlibs/objects.o compiledlibs/datatypes.o compiledlibs/raycast.o compiledlibs/engine.o
 	g++ -fopenmp -o scene scene.cpp ../imgui/src/*.cpp -I"../imgui/include" -I"../sdl/sdl/include" -L"compiledlibs" -L"../sdlbuild/Release" -L"../glewbuild/lib/Release" -pthread -lmainGE -lSDL2 -lglew32 -lopengl32 -lstdc++
+
+scene:
+	g++ -fopenmp -o scene scene.cpp ../imgui/src/*.cpp -I"../imgui/include" -I"../sdl/sdl/include" -L"compiledlibs" -L"../sdlbuild/Release" -L"../glewbuild/lib/Release" -pthread -lmainGE -lSDL2 -lglew32 -lopengl32 -lstdc++

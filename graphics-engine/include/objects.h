@@ -66,6 +66,7 @@ class Object{
         RGB diffuseColor;
         RGB specularColor;
         float specularExponent;
+        float reflectivity; //0: nenhuma refletividade, 1: espelho perfeito
 
     public:
         ObjType type;
@@ -77,6 +78,9 @@ class Object{
         virtual RGB getDiffuseColor();
         virtual RGB getSpecularColor();
         virtual float getSpecularExponent();
+
+        virtual void setReflectivity(float reflectivity);
+        virtual float getReflectivity();
 
         void changeColor(RGB newColor);
 
@@ -273,6 +277,7 @@ class Scene{
         static TextureFiltering texFiltering;
         static CameraProjection camProjection;
 
+        static int rt_rays;
         static int optimizationLevel;
         static bool optimizedRenderization;
         static bool should_predict_pixel;

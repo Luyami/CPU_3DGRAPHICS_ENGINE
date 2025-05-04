@@ -55,6 +55,12 @@ Vector3 Vector3::normalize() {
     return *this / magnitude();
 }
 
+Vector3 Vector3::reflect(Vector3 normal) {
+    Vector3 reflected = *this - normal * 2 * (this->cartesianDot(normal));
+
+    return reflected.normalize();
+}
+
 std::ostream& operator<<(std::ostream& str, Vector3 const& o) { 
     str << '(' << o.x << ',' << o.y << ',' << o.z << ')';
 
